@@ -45,9 +45,8 @@ useEffect(() => {
     if (!sellerId || starting) return;
 
     setStarting(true);
-    api
-      api
-  .post("/chat/start", { sellerId, propertyId, buyerId: user._id })
+   api
+      .post("/chat/start", { sellerId, propertyId, buyerId: user._id })
       .then(({ data }) => router.replace(`/chat/${data._id}`))
       .catch((err) => {
         console.error(err);
