@@ -6,10 +6,10 @@ import { formatPrice, propertyUrl, cldOptimize } from "@/lib/utils";
 export default function PropertyCard({ property }) {
   const img = property.images?.[0];
   return (
-    <Link href={propertyUrl(property)} className="group block overflow-hidden rounded-sm border border-ink-800/10 bg-white transition-shadow hover:shadow-lg hover:shadow-ink-900/5">
+    <Link href={propertyUrl(property)} className="group block overflow-hidden rounded-sm border border-ink-800/10 bg-white transition-all duration-300 hover:-translate-y-1.5 hover:border-brass-500/30 hover:shadow-xl hover:shadow-ink-900/10">
       <div className="relative aspect-[4/3] w-full overflow-hidden bg-ink-900">
         {img ? (
-          <Image src={cldOptimize(img, 600)} alt={property.title} fill sizes="(max-width: 768px) 100vw, 25vw" className="object-cover transition-transform duration-500 group-hover:scale-105" />
+          <Image src={cldOptimize(img, 600)} alt={property.title} fill sizes="(max-width: 768px) 100vw, 25vw" className="object-cover transition-transform duration-700 ease-out group-hover:scale-110" />
         ) : (
           <div className="flex h-full items-center justify-center font-mono text-xs text-paper-100/40">No image</div>
         )}

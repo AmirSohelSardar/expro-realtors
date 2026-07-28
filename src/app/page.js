@@ -8,6 +8,7 @@ import PropertyCard from "@/components/PropertyCard";
 import Spinner from "@/components/Spinner";
 import EmptyState from "@/components/EmptyState";
 import { Home } from "lucide-react";
+import RevealOnScroll from "@/components/RevealOnScroll";
 
 const HOME_PAGE_SIZE = 6;
 
@@ -68,7 +69,11 @@ export default function HomePage() {
         ) : (
           <>
             <div className="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {properties.slice(0, HOME_PAGE_SIZE).map((p) => <PropertyCard key={p._id} property={p} />)}
+              {properties.slice(0, HOME_PAGE_SIZE).map((p, i) => (
+                <RevealOnScroll key={p._id} index={i}>
+                  <PropertyCard property={p} />
+                </RevealOnScroll>
+              ))}
             </div>
             {properties.length > HOME_PAGE_SIZE && (
               <div className="mt-10 flex justify-center">
