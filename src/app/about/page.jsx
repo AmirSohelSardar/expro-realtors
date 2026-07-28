@@ -1,4 +1,5 @@
 import Image from "next/image";
+import ExploreCTAButton from "@/components/ExploreCTAButton";
 import {
   Home,
   ShieldCheck,
@@ -225,9 +226,7 @@ export default function AboutPage() {
             and discover properties that match your lifestyle.
           </p>
 
-          <button className="mt-10 rounded-full bg-paper-50 px-8 py-4 font-bold text-brass-600 transition hover:scale-105">
-            Explore Properties
-          </button>
+       <ExploreCTAButton />
         </div>
       </section>
     </div>
