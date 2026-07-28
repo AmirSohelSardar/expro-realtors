@@ -104,7 +104,8 @@ export default function Footer() {
           <div className="flex items-center gap-2">
             {socialLinks.map(({ icon: Icon, label, href }) => (
               
-                key={label}
+                <a 
+                 key={label}
                 href={href}
                 aria-label={label}
                 className="flex h-9 w-9 items-center justify-center rounded-full border border-ink-800/15 text-ink-900/50 transition-colors hover:border-brass-500 hover:text-brass-600"
