@@ -12,11 +12,7 @@ const FacebookIcon = (props) => (
   </svg>
 );
 
-const TwitterIcon = (props) => (
-  <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16" {...props}>
-    <path d="M22 5.9c-.63.28-1.3.47-2 .55.72-.43 1.28-1.12 1.54-1.94-.67.4-1.42.68-2.22.84A3.5 3.5 0 0 0 12.9 8.6c0 .27.03.53.09.79-2.9-.15-5.48-1.54-7.2-3.66-.3.52-.47 1.12-.47 1.76 0 1.22.62 2.29 1.56 2.92-.57-.02-1.11-.18-1.58-.44v.04c0 1.7 1.21 3.12 2.82 3.44-.3.08-.6.12-.92.12-.23 0-.44-.02-.66-.06.45 1.4 1.75 2.42 3.3 2.45A7.03 7.03 0 0 1 3 17.55 9.93 9.93 0 0 0 8.29 19c6.34 0 9.81-5.26 9.81-9.82v-.45c.67-.48 1.25-1.08 1.9-1.83z" />
-  </svg>
-);
+
 
 const InstagramIcon = (props) => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" width="16" height="16" {...props}>
@@ -32,11 +28,28 @@ const LinkedinIcon = (props) => (
   </svg>
 );
 
+const YoutubeIcon = (props) => (
+  <svg
+    viewBox="0 0 24 24"
+    fill="currentColor"
+    width="16"
+    height="16"
+    {...props}
+  >
+    <path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8zM9.75 15.5v-7l6 3.5-6 3.5z" />
+  </svg>
+);
+
 const socialLinks = [
-  { icon: FacebookIcon, label: "Facebook", href: "#" },
-  { icon: TwitterIcon, label: "Twitter", href: "#" },
-  { icon: InstagramIcon, label: "Instagram", href: "#" },
-  { icon: LinkedinIcon, label: "LinkedIn", href: "#" },
+  { icon: FacebookIcon, label: "Facebook", href: "https://www.facebook.com/ExproRealtors/" },
+  
+  { icon: InstagramIcon, label: "Instagram", href: "https://www.instagram.com/exprorealtors/" },
+  { icon: LinkedinIcon, label: "LinkedIn", href: "https://www.linkedin.com/company/exprolab/" },
+    {
+    icon: YoutubeIcon,
+    label: "YouTube",
+    href: "https://www.youtube.com/channel/UC17t5RAlIbIk2gQtoTdZVnw/about",
+  },
 ];
 
 const companyLinks = [
