@@ -160,18 +160,18 @@ export default function Footer() {
               <li className="flex items-center gap-2">
                 <Mail size={14} className="shrink-0 text-brass-500" />
                 <a href="mailto:contact@exprorealtors.com" className="hover:text-ink-950">
-                  contact@exprorealtors.com
+                  info@exprorealtors.com
                 </a>
               </li>
               <li className="flex items-center gap-2">
                 <Phone size={14} className="shrink-0 text-brass-500" />
                 <a href="tel:+911234567890" className="hover:text-ink-950">
-                  +91 123 456 7890
+                  +91 9330769029
                 </a>
               </li>
               <li className="flex items-start gap-2">
                 <MapPin size={14} className="mt-0.5 shrink-0 text-brass-500" />
-                <span>123 Business Hub, India</span>
+                <span>ANO 209, 2nd Floor, Astra Towers, Action Area IIC, Newtown, Kolkata, New Town, West Bengal 700161</span>
               </li>
             </ul>
           </address>
