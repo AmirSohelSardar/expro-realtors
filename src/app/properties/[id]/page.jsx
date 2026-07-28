@@ -304,7 +304,7 @@ export default function PropertyDetailsPage() {
                   </Link>
                   {property.seller?.role === "admin" ? (
                     <p className="flex items-center gap-1 text-xs text-brass-600">
-                      <ShieldCheck size={11} /> Expro Realtors
+                      <ShieldCheck size={11} /> Expro Realtors Team
                     </p>
                   ) : (
                     property.seller?.isApproved && (
