@@ -11,11 +11,10 @@ const grotesk = Space_Grotesk({ subsets: ["latin"], variable: "--font-grotesk" }
 
 export const metadata = {
   title: "Expro Realtors | Find your next address",
-  description: "A real estate marketplace to browse, list, and inquire about properties.",
+  description:
+    "A real estate marketplace to browse, list, and inquire about properties.",
   icons: {
-    icon: "/logo.png",
-    shortcut: "/logo.png",
-    apple: "/logo.png",
+    icon: "/favicon.ico",
   },
 };
 
