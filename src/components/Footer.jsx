@@ -48,7 +48,7 @@ const socialLinks = [
     {
     icon: YoutubeIcon,
     label: "YouTube",
-    href: "https://www.youtube.com/channel/UC17t5RAlIbIk2gQtoTdZVnw/about",
+    href: "https://www.youtube.com/channel/UC17t5RAlIbIk2gQtoTdZVnw/",
   },
 ];
 
