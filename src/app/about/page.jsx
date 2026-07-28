@@ -91,17 +91,17 @@ export default function AboutPage() {
             </div>
           </div>
 
-          {/* CEO */}
+        {/* CEO */}
           <div className="flex justify-center">
             <div className="relative">
               <div className="absolute inset-0 animate-pulse rounded-full bg-brass-400 blur-3xl opacity-30"></div>
-              <div className="relative h-96 w-96 overflow-hidden rounded-full border-[8px] border-brass-500 shadow-2xl animate-float transition duration-500 hover:scale-105">
+              <div className="relative h-56 w-56 overflow-hidden rounded-full border-4 border-brass-500 shadow-xl animate-float transition duration-500 hover:scale-105 sm:h-64 sm:w-64 lg:h-72 lg:w-72">
                 <Image
                   src="/ceo.jpg"
                   alt="CEO"
                   fill
                   priority
-                  sizes="384px"
+                  sizes="(max-width: 640px) 224px, (max-width: 1024px) 256px, 288px"
                   className="object-cover"
                 />
               </div>
