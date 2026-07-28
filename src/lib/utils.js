@@ -45,7 +45,7 @@ export function roleLabel(otherUser, chat) {
   if (!otherUser) return "";
   const isSellerSlot = chat.seller?._id === otherUser._id;
   if (otherUser.role === "admin") {
-    return isSellerSlot ? "(Expro Realtors Team)" : "(Admin as Buyer)";
+    return "(Expro Realtors Team)";
   }
   return isSellerSlot ? "(Seller)" : "(Buyer)";
 }
