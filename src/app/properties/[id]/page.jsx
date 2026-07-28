@@ -302,10 +302,16 @@ export default function PropertyDetailsPage() {
                   >
                     {property.seller?.name}
                   </Link>
-                  {property.seller?.isApproved && (
-                    <p className="flex items-center gap-1 text-xs text-sage-600">
-                      <ShieldCheck size={11} /> Verified Seller
+                  {property.seller?.role === "admin" ? (
+                    <p className="flex items-center gap-1 text-xs text-brass-600">
+                      <ShieldCheck size={11} /> Expro Realtors
                     </p>
+                  ) : (
+                    property.seller?.isApproved && (
+                      <p className="flex items-center gap-1 text-xs text-sage-600">
+                        <ShieldCheck size={11} /> Verified Seller
+                      </p>
+                    )
                   )}
                 </div>
               </div>
