@@ -243,25 +243,38 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* TEAM */}
+     {/* TEAM */}
       <section className="border-t border-ink-800/10 bg-paper-100 py-20">
         <div className="mx-auto max-w-7xl px-6">
-          <div className="max-w-2xl">
-            <p className="font-mono text-xs uppercase tracking-[0.25em] text-brass-600">Our People</p>
-            <h2 className="mt-3 font-display text-3xl italic text-ink-950">Meet the team</h2>
-            <p className="mt-3 text-sm text-ink-800/70">
-              The people behind every site visit, every verified listing, and every deal closed.
-            </p>
-          </div>
+          <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
+            <div className="relative mx-auto aspect-[4/3] w-full max-w-md overflow-hidden rounded-sm border border-ink-800/10 bg-ink-900 shadow-sm">
+              <Image
+                src="/team.jpg"
+                alt="The Expro Realtors team"
+                fill
+                sizes="(max-width: 1024px) 100vw, 448px"
+                className="object-cover"
+              />
+            </div>
 
-          <div className="relative mt-8 aspect-[21/9] w-full overflow-hidden rounded-sm border border-ink-800/10 bg-ink-900 shadow-sm">
-            <Image
-              src="/team.jpg"
-              alt="The Expro Realtors team"
-              fill
-              sizes="100vw"
-              className="object-cover"
-            />
+            <div>
+              <p className="font-mono text-xs uppercase tracking-[0.25em] text-brass-600">Our People</p>
+              <h2 className="mt-3 font-display text-3xl italic text-ink-950">Meet the team</h2>
+
+              <p className="mt-5 text-[15px] leading-7 text-ink-800/70">
+                Hi, this is our complete Expro Realtors company, under our CEO,{" "}
+                <span className="font-semibold text-ink-950">Habibur Rahaman</span>. We provide the
+                best property dealing experience in Kolkata — from the first site visit to the
+                final registration, we stay with every client until the deal is closed.
+              </p>
+
+              <p className="mt-4 text-[15px] leading-7 text-ink-800/70">
+                Our team is like a family. Every member, from the people who verify a listing to
+                the ones who answer your call at midnight before a big decision, works with one
+                goal — making sure you never feel alone in a property deal. That&rsquo;s the
+                promise we bring to every family we work with.
+              </p>
+            </div>
           </div>
         </div>
       </section>
