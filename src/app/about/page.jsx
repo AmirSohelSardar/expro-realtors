@@ -124,19 +124,35 @@ export default function AboutPage() {
             </div>
           </div>
 
-          {/* CEO */}
-          <div className="flex justify-center">
+         {/* CEO */}
+          <div className="flex flex-col items-center">
             <div className="relative">
               <div className="absolute inset-0 animate-pulse rounded-full bg-brass-400 blur-3xl opacity-20"></div>
               <div className="relative h-56 w-56 overflow-hidden rounded-full border-4 border-brass-500 shadow-xl animate-float transition duration-500 hover:scale-105 sm:h-64 sm:w-64 lg:h-72 lg:w-72">
                 <Image
                   src="/ceo.jpg"
-                  alt="CEO"
+                  alt="Habibur Rahaman — CEO &amp; Founder, Expro Group"
                   fill
                   priority
                   sizes="(max-width: 640px) 224px, (max-width: 1024px) 256px, 288px"
                   className="object-cover"
                 />
+              </div>
+            </div>
+
+            <div className="mt-5 text-center">
+              <h2 className="font-display text-xl italic text-ink-950">Habibur Rahaman</h2>
+              <p className="mt-1 font-mono text-xs uppercase tracking-widest text-brass-600">
+                CEO &amp; Founder — Expro Group
+              </p>
+
+              <div className="mt-3 flex flex-wrap items-center justify-center gap-2">
+                <span className="rounded-full border border-ink-800/15 bg-paper-50 px-3 py-1 text-xs text-ink-800/70">
+                  Expro Realtors
+                </span>
+                <span className="rounded-full border border-ink-800/15 bg-paper-50 px-3 py-1 text-xs text-ink-800/70">
+                  Expro Lab Infotech Pvt. Ltd.
+                </span>
               </div>
             </div>
           </div>
