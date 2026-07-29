@@ -29,6 +29,7 @@ export default function PropertyForm({ initialData, propertyId }) {
     furnishing: initialData?.furnishing || "",
     status: initialData?.status || "sale",
     amenities: initialData?.amenities || [],
+    youtubeUrl: initialData?.youtubeUrl || "",
   });
   const [existingImages, setExistingImages] = useState(initialData?.images || []);
   const [newFiles, setNewFiles] = useState([]);
@@ -248,6 +249,20 @@ export default function PropertyForm({ initialData, propertyId }) {
             </select>
           </div>
         )}
+      </div>
+
+      <div>
+        <label className="font-mono text-xs uppercase tracking-widest text-ink-800/70">
+          YouTube video link <span className="normal-case text-ink-800/40">(optional)</span>
+        </label>
+        <input
+          type="url"
+          value={form.youtubeUrl}
+          onChange={(e) => setForm({ ...form, youtubeUrl: e.target.value })}
+          placeholder="https://www.youtube.com/watch?v=..."
+          className="mt-1.5 w-full rounded-sm border border-ink-800/20 px-3 py-2.5 text-sm focus:border-brass-500 focus:outline-none"
+        />
+        <p className="mt-1 text-xs text-ink-800/50">Paste a YouTube link for a walkthrough or tour video — leave blank if you don't have one.</p>
       </div>
 
       <div>

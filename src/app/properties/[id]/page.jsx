@@ -10,6 +10,7 @@ import Button from "@/components/Button";
 import PropertyCard from "@/components/PropertyCard";
 import ImageLightbox from "@/components/ImageLightbox";
 import SiteVisitForm from "@/components/SiteVisitForm";
+import PropertyVideo from "@/components/PropertyVideo";
 import { useAuth } from "@/context/AuthContext";
 import { useToast } from "@/context/ToastContext";
 import { formatPrice } from "@/lib/utils";
@@ -242,6 +243,8 @@ export default function PropertyDetailsPage() {
             <h2 className="font-display text-xl text-ink-950">Description</h2>
             <p className="mt-2 whitespace-pre-line text-sm leading-relaxed text-ink-800/80">{property.description}</p>
           </div>
+
+          {property.youtubeUrl && <PropertyVideo youtubeUrl={property.youtubeUrl} />}
 
           {property.amenities?.length > 0 && (
             <div className="mt-8">
