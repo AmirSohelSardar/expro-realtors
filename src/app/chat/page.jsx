@@ -38,21 +38,27 @@ useEffect(() => {
     return () => clearInterval(interval);
   }, []);
 
-  // Auto-start a chat if arriving from "Message seller" with sellerId/propertyId
+ // Auto-start a chat if arriving from "Message seller" with sellerId/propertyId
   useEffect(() => {
     const sellerId = searchParams.get("sellerId");
     const propertyId = searchParams.get("propertyId");
-    if (!sellerId || starting) return;
+    if (!sellerId || starting || !user) return;
+
+    if (user.role !== "buyer") {
+      // sellers/admins can't start new chats — just fall back to their existing conversations
+      router.replace("/chat");
+      return;
+    }
 
     setStarting(true);
-   api
-      .post("/chat/start", { sellerId, propertyId, buyerId: user._id })
+    api
+      .post("/chat/start", { sellerId, propertyId })
       .then(({ data }) => router.replace(`/chat/${data._id}`))
       .catch((err) => {
         console.error(err);
         setStarting(false);
       });
-  }, [searchParams, router, starting]);
+  }, [searchParams, router, starting, user]);
 
   if (loading || starting) return <Spinner />;
 

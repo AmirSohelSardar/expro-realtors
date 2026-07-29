@@ -320,12 +320,25 @@ export default function PropertyDetailsPage() {
                 <p className="mt-4 text-xs text-ink-800/50">This is your own listing.</p>
               ) : (
                 <>
-                  <Link
-                    href={`/chat?sellerId=${property.seller?._id}&propertyId=${property._id}`}
-                    className="mt-4 flex w-full items-center justify-center gap-2 rounded-sm bg-ink-900 px-4 py-2.5 font-mono text-xs uppercase tracking-widest text-paper-50 hover:bg-ink-800"
-                  >
-                    <MessageCircle size={14} /> Chat
-                  </Link>
+                  {!user ? (
+                    <Link
+                      href="/login"
+                      className="mt-4 flex w-full items-center justify-center gap-2 rounded-sm bg-ink-900 px-4 py-2.5 font-mono text-xs uppercase tracking-widest text-paper-50 hover:bg-ink-800"
+                    >
+                      <MessageCircle size={14} /> Login to chat
+                    </Link>
+                  ) : isBuyer ? (
+                    <Link
+                      href={`/chat?sellerId=${property.seller?._id}&propertyId=${property._id}`}
+                      className="mt-4 flex w-full items-center justify-center gap-2 rounded-sm bg-ink-900 px-4 py-2.5 font-mono text-xs uppercase tracking-widest text-paper-50 hover:bg-ink-800"
+                    >
+                      <MessageCircle size={14} /> Chat
+                    </Link>
+                  ) : (
+                    <p className="mt-4 rounded-sm bg-paper-100/60 p-3 text-center text-xs text-ink-800/60">
+                      Only buyer accounts can chat with the lister.
+                    </p>
+                  )}
 
                   {isBuyer && <SiteVisitForm propertyId={property._id} />}
 
