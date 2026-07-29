@@ -9,7 +9,7 @@ import { cx } from "@/lib/utils";
 import Image from "next/image";
 
 export default function Navbar() {
-  const { user, logout } = useAuth();
+  const { user, logout, loading } = useAuth();
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
 
@@ -47,6 +47,10 @@ export default function Navbar() {
 </Link>
 
         <nav className="hidden items-center gap-7 md:flex">
+          {loading ? (
+            <div className="h-4 w-40 animate-pulse rounded bg-ink-800/10" />
+          ) : (
+            <>
           {(user ? loggedInLinks : loggedOutLinks).map((l) => (
             <Link
               key={l.href}
@@ -92,8 +96,10 @@ export default function Navbar() {
                 className="rounded-sm bg-brass-500 px-4 py-2 font-mono text-xs uppercase tracking-widest text-white hover:bg-brass-600 transition-colors"
               >
                 Register
-              </Link>
+           </Link>
             </div>
+          )}
+          </>
           )}
         </nav>
 
@@ -102,7 +108,7 @@ export default function Navbar() {
         </button>
       </div>
 
-      {open && (
+      {open && !loading && (
         <div className="border-t border-ink-800/10 px-4 py-4 md:hidden">
           <div className="flex flex-col gap-3">
             {(user ? loggedInLinks : loggedOutLinks).map((l) => (
