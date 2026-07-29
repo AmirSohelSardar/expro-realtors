@@ -40,6 +40,10 @@ export default function PropertyForm({ initialData, propertyId }) {
   });
   const [existingImages, setExistingImages] = useState(initialData?.images || []);
   const [newFiles, setNewFiles] = useState([]);
+  const [locationDetails, setLocationDetails] = useState(initialData?.locationDetails || "");
+  const [locationImageFile, setLocationImageFile] = useState(null);
+  const [locationImagePreview, setLocationImagePreview] = useState(initialData?.locationImage || null);
+  const [removeLocationImage, setRemoveLocationImage] = useState(false);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -62,6 +66,20 @@ export default function PropertyForm({ initialData, propertyId }) {
     setNewFiles((prev) => prev.filter((_, i) => i !== idx));
   }
 
+  function handleLocationImageChange(e) {
+    const f = e.target.files[0];
+    if (!f) return;
+    setLocationImageFile(f);
+    setLocationImagePreview(URL.createObjectURL(f));
+    setRemoveLocationImage(false);
+  }
+
+  function handleRemoveLocationImage() {
+    setLocationImageFile(null);
+    setLocationImagePreview(null);
+    setRemoveLocationImage(true);
+  }
+
   async function handleSubmit(e) {
     e.preventDefault();
     setError("");
@@ -74,6 +92,9 @@ export default function PropertyForm({ initialData, propertyId }) {
     });
     if (isEdit) fd.append("existingImages", JSON.stringify(existingImages));
     newFiles.forEach((file) => fd.append("images", file));
+    fd.append("locationDetails", locationDetails);
+    if (locationImageFile) fd.append("locationImage", locationImageFile);
+    if (removeLocationImage) fd.append("removeLocationImage", "true");
 
     try {
       if (isEdit) {
@@ -415,6 +436,49 @@ export default function PropertyForm({ initialData, propertyId }) {
           className="mt-3 w-full text-sm file:mr-3 file:rounded-sm file:border-0 file:bg-ink-900 file:px-3 file:py-2 file:text-xs file:uppercase file:tracking-widest file:text-paper-50"
         />
         <p className="mt-1 text-xs text-ink-800/50">Up to 10 images total.</p>
+      </div>
+
+      <div className="rounded-sm border border-ink-800/10 p-4">
+        <p className="font-mono text-xs uppercase tracking-widest text-ink-800/70">
+          Location details <span className="normal-case text-ink-800/40">(optional)</span>
+        </p>
+        <p className="mt-1 text-xs text-ink-800/50">
+          Add a location map image and describe nearby landmarks, schools, hospitals, or offices — shown as a &quot;Location&quot; section on the property page.
+        </p>
+
+        <div className="mt-3">
+          <label className="font-mono text-xs uppercase tracking-widest text-ink-800/70">Location map image</label>
+          {locationImagePreview ? (
+            <div className="relative mt-2 h-40 w-full max-w-xs overflow-hidden rounded-sm border border-ink-800/10">
+              <img src={locationImagePreview} alt="" className="h-full w-full object-cover" />
+              <button
+                type="button"
+                onClick={handleRemoveLocationImage}
+                className="absolute right-1 top-1 rounded-full bg-ink-950/70 p-1 text-paper-50"
+              >
+                <X size={12} />
+              </button>
+            </div>
+          ) : (
+            <input
+              type="file"
+              accept="image/*"
+              onChange={handleLocationImageChange}
+              className="mt-1.5 w-full text-sm file:mr-3 file:rounded-sm file:border-0 file:bg-ink-900 file:px-3 file:py-2 file:text-xs file:uppercase file:tracking-widest file:text-paper-50"
+            />
+          )}
+        </div>
+
+        <div className="mt-4">
+          <label className="font-mono text-xs uppercase tracking-widest text-ink-800/70">Nearby landmarks / details</label>
+          <textarea
+            rows={4}
+            value={locationDetails}
+            onChange={(e) => setLocationDetails(e.target.value)}
+            placeholder={"e.g.\nOrchids The International School - 7 mins\nTata Medical Centre - 12 mins\nInfosys - 1 min"}
+            className="mt-1.5 w-full rounded-sm border border-ink-800/20 px-3 py-2.5 text-sm focus:border-brass-500 focus:outline-none"
+          />
+        </div>
       </div>
 
       {error && <p className="text-sm text-rust-500">{error}</p>}

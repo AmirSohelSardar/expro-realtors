@@ -310,6 +310,32 @@ export default function PropertyDetailsPage() {
             </div>
           )}
 
+          {(property.locationImage || property.locationDetails) && (
+            <div className="mt-10">
+              <h2 className="font-display text-xl text-ink-950">Location</h2>
+              <div className="mt-3 grid gap-4 sm:grid-cols-2">
+                {property.locationDetails && (
+                  <div className="rounded-sm border border-ink-800/10 p-5">
+                    <p className="whitespace-pre-line text-sm leading-relaxed text-ink-800/80">
+                      {property.locationDetails}
+                    </p>
+                  </div>
+                )}
+                {property.locationImage && (
+                  <div className="relative aspect-[4/3] w-full overflow-hidden rounded-sm border border-ink-800/10 bg-ink-900">
+                    <Image
+                      src={property.locationImage}
+                      alt={`${property.title} location map`}
+                      fill
+                      sizes="(max-width: 640px) 100vw, 50vw"
+                      className="object-cover"
+                    />
+                  </div>
+                )}
+              </div>
+            </div>
+          )}
+
           <div className="mt-10 rounded-sm border border-ink-800/10 p-5">
             <h2 className="font-display text-lg text-ink-950">Property Details</h2>
             <div className="mt-4 grid grid-cols-2 gap-y-4 text-sm">
