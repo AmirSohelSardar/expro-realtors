@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import { usePathname } from "next/navigation";
-import { Menu, X, Heart, MessageCircle, Home, LayoutDashboard } from "lucide-react";
+import { Menu, X, Heart, MessageCircle, Home, LayoutDashboard, LogOut } from "lucide-react";
 import { useAuth } from "@/context/AuthContext";
 import { cx } from "@/lib/utils";
 import Image from "next/image";
@@ -77,9 +77,9 @@ export default function Navbar() {
               </Link>
               <button
                 onClick={logout}
-                className="font-mono text-xs uppercase tracking-widest text-ink-900/50 hover:text-rust-500 transition-colors"
+                className="flex items-center gap-1.5 rounded-sm border border-ink-800/20 px-3 py-1.5 font-mono text-xs uppercase tracking-widest text-ink-900/60 transition-colors hover:border-rust-500 hover:text-rust-500"
               >
-                Sign out
+                <LogOut size={13} /> Sign out
               </button>
             </div>
           ) : (
@@ -115,7 +115,9 @@ export default function Navbar() {
               <>
                 <Link href="/contact" onClick={() => setOpen(false)} className="text-brass-600 py-1">Contact Us</Link>
                 <Link href="/profile" onClick={() => setOpen(false)} className="text-ink-900 py-1">Profile</Link>
-                <button onClick={logout} className="text-left text-rust-500 py-1">Sign out</button>
+                <button onClick={logout} className="flex items-center gap-1.5 py-1 text-left text-rust-500">
+                  <LogOut size={15} /> Sign out
+                </button>
               </>
             ) : (
               <>
