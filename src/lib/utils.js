@@ -56,6 +56,12 @@ export function cldOptimize(url, width) {
   return url.replace("/upload/", `/upload/${transform}/`);
 }
 
+export const POSSESSION_STATUS_META = {
+  "new-launch": { label: "New Launch", barClass: "bg-rust-500" },
+  "under-construction": { label: "Under Construction", barClass: "bg-brass-500" },
+  "ready-to-move": { label: "Ready to Move", barClass: "bg-sage-500" },
+};
+
 export function getYouTubeId(url) {
   if (!url) return null;
   const match = url.match(

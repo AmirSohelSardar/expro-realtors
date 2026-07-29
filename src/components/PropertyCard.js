@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { BedDouble, Bath, Ruler, MapPin } from "lucide-react";
-import { formatPrice, propertyUrl, cldOptimize } from "@/lib/utils";
+import { formatPrice, propertyUrl, cldOptimize, POSSESSION_STATUS_META } from "@/lib/utils";
 
 export default function PropertyCard({ property }) {
   const img = property.images?.[0];
@@ -15,9 +15,14 @@ export default function PropertyCard({ property }) {
         )}
       </div>
       <div className="p-4">
-        <p className="font-mono text-lg font-medium tabular-nums text-ink-950">{formatPrice(property.price)}</p>
-        <h3 className="mt-1 truncate font-display text-lg text-ink-900">{property.title}</h3>
-        <p className="mt-1 flex items-center gap-1 text-xs text-ink-800/60">
+        <div className="flex items-start justify-between gap-2">
+          <h3 className="truncate font-display text-lg text-ink-900">{property.title}</h3>
+          <p className="shrink-0 font-mono text-sm font-medium tabular-nums text-ink-950">{formatPrice(property.price)}</p>
+        </div>
+        {property.developerName && (
+          <p className="mt-0.5 truncate text-xs text-ink-800/50">By {property.developerName}</p>
+        )}
+        <p className="mt-2 flex items-center gap-1 text-xs text-ink-800/60">
           <MapPin size={12} /> {property.area}, {property.city}
         </p>
         <div className="mt-3 flex items-center gap-4 border-t border-ink-800/10 pt-3 font-mono text-xs text-ink-800/70">
@@ -25,6 +30,21 @@ export default function PropertyCard({ property }) {
           {property.bathrooms && <span className="flex items-center gap-1"><Bath size={14} /> {property.bathrooms}</span>}
           {property.areaSize && <span className="flex items-center gap-1"><Ruler size={14} /> {property.areaSize} sqft</span>}
         </div>
+
+        {property.possessionStatus && (
+          <div className="mt-3 border-t border-ink-800/10 pt-3">
+            <p className="text-xs text-ink-800/70">
+              {POSSESSION_STATUS_META[property.possessionStatus]?.label}
+              {typeof property.possessionPercent === "number" && ` (${property.possessionPercent}%)`}
+            </p>
+            <div className="mt-1.5 h-1.5 w-full overflow-hidden rounded-full bg-ink-800/10">
+              <div
+                className={`h-full rounded-full ${POSSESSION_STATUS_META[property.possessionStatus]?.barClass}`}
+                style={{ width: `${property.possessionPercent || 0}%` }}
+              />
+            </div>
+          </div>
+        )}
       </div>
     </Link>
   );

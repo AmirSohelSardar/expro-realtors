@@ -13,7 +13,7 @@ import SiteVisitForm from "@/components/SiteVisitForm";
 import PropertyVideo from "@/components/PropertyVideo";
 import { useAuth } from "@/context/AuthContext";
 import { useToast } from "@/context/ToastContext";
-import { formatPrice } from "@/lib/utils";
+import { formatPrice, POSSESSION_STATUS_META } from "@/lib/utils";
 import {
   BedDouble,
   Bath,
@@ -198,6 +198,9 @@ export default function PropertyDetailsPage() {
 
           <div className="mt-3 flex items-start justify-between gap-4">
             <div>
+              {property.developerName && (
+                <p className="text-sm text-ink-800/50">By {property.developerName}</p>
+              )}
               <h1 className="font-display text-3xl italic text-ink-950">{property.title}</h1>
               <p className="mt-1 flex items-center gap-1 text-sm text-ink-800/60">
                 <MapPin size={14} /> {property.area}, {property.city}, {property.pincode}
@@ -238,6 +241,52 @@ export default function PropertyDetailsPage() {
               <p className="mt-1 font-mono text-[9px] uppercase tracking-widest text-ink-800/50">Type</p>
             </div>
           </div>
+
+          {(property.possessionStatus || property.blocks || property.totalUnits || property.reraId) && (
+            <div className="mt-8 rounded-sm border border-ink-800/10 p-5">
+              <div className="grid grid-cols-2 gap-y-4 text-sm sm:grid-cols-4">
+                {property.blocks && (
+                  <div>
+                    <p className="font-mono text-[10px] uppercase tracking-widest text-ink-800/40">Blocks</p>
+                    <p className="mt-1 text-ink-900">{property.blocks}</p>
+                  </div>
+                )}
+                {property.totalUnits && (
+                  <div>
+                    <p className="font-mono text-[10px] uppercase tracking-widest text-ink-800/40">Units</p>
+                    <p className="mt-1 text-ink-900">{property.totalUnits}</p>
+                  </div>
+                )}
+                {property.possessionYear && (
+                  <div>
+                    <p className="font-mono text-[10px] uppercase tracking-widest text-ink-800/40">Possession</p>
+                    <p className="mt-1 text-ink-900">{property.possessionYear}</p>
+                  </div>
+                )}
+                {property.reraId && (
+                  <div>
+                    <p className="font-mono text-[10px] uppercase tracking-widest text-ink-800/40">RERA ID</p>
+                    <p className="mt-1 break-all text-ink-900">{property.reraId}</p>
+                  </div>
+                )}
+              </div>
+
+              {property.possessionStatus && (
+                <div className="mt-4 border-t border-ink-800/10 pt-4">
+                  <p className="font-mono text-xs uppercase tracking-widest text-rust-500">
+                    {POSSESSION_STATUS_META[property.possessionStatus]?.label}
+                    {typeof property.possessionPercent === "number" && ` (${property.possessionPercent}%)`}
+                  </p>
+                  <div className="mt-2 h-2 w-full overflow-hidden rounded-full bg-ink-800/10">
+                    <div
+                      className={`h-full rounded-full ${POSSESSION_STATUS_META[property.possessionStatus]?.barClass}`}
+                      style={{ width: `${property.possessionPercent || 0}%` }}
+                    />
+                  </div>
+                </div>
+              )}
+            </div>
+          )}
 
           <div className="mt-8">
             <h2 className="font-display text-xl text-ink-950">Description</h2>

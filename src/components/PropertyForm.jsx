@@ -30,6 +30,13 @@ export default function PropertyForm({ initialData, propertyId }) {
     status: initialData?.status || "sale",
     amenities: initialData?.amenities || [],
     youtubeUrl: initialData?.youtubeUrl || "",
+    developerName: initialData?.developerName || "",
+    possessionStatus: initialData?.possessionStatus || "",
+    possessionPercent: initialData?.possessionPercent ?? "",
+    blocks: initialData?.blocks || "",
+    totalUnits: initialData?.totalUnits || "",
+    possessionYear: initialData?.possessionYear || "",
+    reraId: initialData?.reraId || "",
   });
   const [existingImages, setExistingImages] = useState(initialData?.images || []);
   const [newFiles, setNewFiles] = useState([]);
@@ -249,6 +256,91 @@ export default function PropertyForm({ initialData, propertyId }) {
             </select>
           </div>
         )}
+      </div>
+
+      <div className="rounded-sm border border-ink-800/10 p-4">
+        <p className="font-mono text-xs uppercase tracking-widest text-ink-800/70">
+          Developer &amp; possession details <span className="normal-case text-ink-800/40">(optional — for new project listings)</span>
+        </p>
+
+        <div className="mt-3 grid grid-cols-1 gap-4 sm:grid-cols-2">
+          <div>
+            <label className="font-mono text-xs uppercase tracking-widest text-ink-800/70">Developer name</label>
+            <input
+              value={form.developerName}
+              onChange={(e) => setForm({ ...form, developerName: e.target.value })}
+              placeholder="e.g. Vinayak Group"
+              className="mt-1.5 w-full rounded-sm border border-ink-800/20 px-3 py-2.5 text-sm focus:border-brass-500 focus:outline-none"
+            />
+          </div>
+
+          <div>
+            <label className="font-mono text-xs uppercase tracking-widest text-ink-800/70">Possession status</label>
+            <select
+              value={form.possessionStatus}
+              onChange={(e) => setForm({ ...form, possessionStatus: e.target.value })}
+              className="mt-1.5 w-full rounded-sm border border-ink-800/20 px-3 py-2.5 text-sm focus:border-brass-500 focus:outline-none"
+            >
+              <option value="">Not applicable</option>
+              <option value="new-launch">New Launch</option>
+              <option value="under-construction">Under Construction</option>
+              <option value="ready-to-move">Ready to Move</option>
+            </select>
+          </div>
+
+          <div>
+            <label className="font-mono text-xs uppercase tracking-widest text-ink-800/70">Completion (%)</label>
+            <input
+              type="number"
+              min="0"
+              max="100"
+              value={form.possessionPercent}
+              onChange={(e) => setForm({ ...form, possessionPercent: e.target.value })}
+              className="mt-1.5 w-full rounded-sm border border-ink-800/20 px-3 py-2.5 text-sm focus:border-brass-500 focus:outline-none"
+            />
+          </div>
+
+          <div>
+            <label className="font-mono text-xs uppercase tracking-widest text-ink-800/70">Possession year</label>
+            <input
+              value={form.possessionYear}
+              onChange={(e) => setForm({ ...form, possessionYear: e.target.value })}
+              placeholder="e.g. 2032"
+              className="mt-1.5 w-full rounded-sm border border-ink-800/20 px-3 py-2.5 text-sm focus:border-brass-500 focus:outline-none"
+            />
+          </div>
+
+          <div>
+            <label className="font-mono text-xs uppercase tracking-widest text-ink-800/70">Blocks</label>
+            <input
+              value={form.blocks}
+              onChange={(e) => setForm({ ...form, blocks: e.target.value })}
+              placeholder="e.g. 5 | G + 21"
+              className="mt-1.5 w-full rounded-sm border border-ink-800/20 px-3 py-2.5 text-sm focus:border-brass-500 focus:outline-none"
+            />
+          </div>
+
+          <div>
+            <label className="font-mono text-xs uppercase tracking-widest text-ink-800/70">Total units</label>
+            <input
+              type="number"
+              value={form.totalUnits}
+              onChange={(e) => setForm({ ...form, totalUnits: e.target.value })}
+              placeholder="e.g. 750"
+              className="mt-1.5 w-full rounded-sm border border-ink-800/20 px-3 py-2.5 text-sm focus:border-brass-500 focus:outline-none"
+            />
+          </div>
+
+          <div className="sm:col-span-2">
+            <label className="font-mono text-xs uppercase tracking-widest text-ink-800/70">RERA ID</label>
+            <input
+              value={form.reraId}
+              onChange={(e) => setForm({ ...form, reraId: e.target.value })}
+              placeholder="e.g. WBRERA/P/SOU/2026/004147"
+              className="mt-1.5 w-full rounded-sm border border-ink-800/20 px-3 py-2.5 text-sm focus:border-brass-500 focus:outline-none"
+            />
+          </div>
+        </div>
       </div>
 
       <div>
