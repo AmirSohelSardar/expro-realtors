@@ -109,8 +109,7 @@ export default function Footer() {
               <span className="font-display text-2xl italic text-ink-950">Expro Realtors</span>
             </Link>
             <p className="mt-4 text-sm leading-relaxed text-ink-800/60">
-              A plainer way to find, list, and inquire about a place to live —
-              browse, connect, and move in without the noise.
+              Discover our extensive knowledge base and in-depth guides covering every aspect of the real estate industry. Keep yourself informed on the latest market trends, smart investment strategies, legal essentials, diverse property types, and more. Whether you’re a first-time buyer, seasoned investor, or industry professional, our resources are designed to empower your decisions.
             </p>
           </div>
 
