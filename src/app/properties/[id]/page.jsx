@@ -136,13 +136,15 @@ export default function PropertyDetailsPage() {
         <span className="truncate text-ink-800/70">{property.title}</span>
       </div>
 
-      {/* Image gallery grid */}
+     {/* Image gallery grid */}
       <div className={`mt-4 grid grid-cols-1 gap-2 ${images.length > 1 ? "sm:grid-cols-2" : ""}`}>
         <button
           type="button"
           onClick={() => images.length > 0 && setLightboxOpen(true)}
           className={`relative w-full cursor-zoom-in overflow-hidden rounded-sm bg-ink-900 ${
-            images.length > 1 ? "aspect-[4/3] sm:row-span-2 sm:aspect-auto" : "aspect-[16/9] max-h-[500px]"
+            images.length > 1
+              ? "aspect-[4/3] sm:row-span-2 sm:aspect-auto lg:h-[420px]"
+              : "aspect-[16/9] max-h-[500px] lg:h-[420px]"
           }`}
         >
           {images.length > 0 ? (
@@ -158,7 +160,7 @@ export default function PropertyDetailsPage() {
               setActiveImg(i + 1);
               setLightboxOpen(true);
             }}
-            className="relative aspect-[16/9] w-full cursor-zoom-in overflow-hidden rounded-sm bg-ink-900"
+            className="relative aspect-[16/9] w-full cursor-zoom-in overflow-hidden rounded-sm bg-ink-900 lg:h-[206px]"
           >
             <Image src={img} alt="" fill sizes="50vw" className="object-cover" />
           </button>
