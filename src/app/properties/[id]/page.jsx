@@ -28,6 +28,8 @@ import {
   ChevronRight,
 } from "lucide-react";
 
+import PropertyDetailSkeleton from "@/components/skeletons/PropertyDetailSkeleton";
+
 export default function PropertyDetailsPage() {
   const { id: rawParam } = useParams();
   const id = rawParam?.match(/[a-f0-9]{24}$/i)?.[0] || rawParam;
@@ -111,7 +113,7 @@ export default function PropertyDetailsPage() {
     }
   }
 
-  if (loading) return <Spinner />;
+  if (loading) return <PropertyDetailSkeleton />;
   if (!property) {
     return (
       <div className="mx-auto max-w-3xl px-4 py-20 text-center">

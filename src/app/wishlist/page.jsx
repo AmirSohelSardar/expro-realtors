@@ -7,6 +7,7 @@ import Spinner from "@/components/Spinner";
 import EmptyState from "@/components/EmptyState";
 import { useToast } from "@/context/ToastContext";
 import { Heart, X } from "lucide-react";
+import PropertyGridSkeleton from "@/components/skeletons/PropertyGridSkeleton";
 
 export default function WishlistPage() {
   const { showToast } = useToast();
@@ -40,7 +41,7 @@ export default function WishlistPage() {
     }
   }
 
-  if (loading) return <Spinner />;
+  if (loading) return <PropertyGridSkeleton count={6} className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3" />;
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">

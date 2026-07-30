@@ -8,6 +8,7 @@ import Pagination from "@/components/Pagination";
 import { useToast } from "@/context/ToastContext";
 import { formatPrice, propertyUrl } from "@/lib/utils";
 import { Trash2, Search } from "lucide-react";
+import TableSkeleton from "@/components/skeletons/TableSkeleton";
 
 const PAGE_SIZE = 10;
 
@@ -50,7 +51,7 @@ export default function AdminPropertiesPage() {
     }
   }
 
-  if (loading) return <Spinner />;
+  if (loading) return <TableSkeleton rows={6} cols={4} />;
 
   const filtered = properties.filter((p) => {
     const q = query.trim().toLowerCase();

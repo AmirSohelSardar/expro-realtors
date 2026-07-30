@@ -10,6 +10,7 @@ import { useToast } from "@/context/ToastContext";
 import Spinner from "@/components/Spinner";
 import { ArrowLeft, Send, Trash2, Check, CheckCheck } from "lucide-react";
 import { roleLabel, formatChatTime, formatChatDateLabel } from "@/lib/utils";
+import ChatConversationSkeleton from "@/components/skeletons/ChatConversationSkeleton";
 
 export default function ChatConversationPage() {
   const { chatId } = useParams();
@@ -82,7 +83,7 @@ export default function ChatConversationPage() {
     }
   }
 
-  if (loading) return <Spinner />;
+  if (loading) return <ChatConversationSkeleton />;
   if (!chat) return <p className="px-6 py-16 text-center text-ink-800/60">Conversation not found.</p>;
 
   const other = user._id === chat.buyer?._id ? chat.seller : chat.buyer;

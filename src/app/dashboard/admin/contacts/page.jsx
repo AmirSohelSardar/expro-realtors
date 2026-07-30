@@ -7,6 +7,7 @@ import EmptyState from "@/components/EmptyState";
 import Pagination from "@/components/Pagination";
 import { useToast } from "@/context/ToastContext";
 import { Mail, Search, Phone } from "lucide-react";
+import TableSkeleton from "@/components/skeletons/TableSkeleton";
 
 const PAGE_SIZE = 10;
 
@@ -29,7 +30,7 @@ export default function AdminContactsPage() {
     setPage(1);
   }, [query]);
 
-  if (loading) return <Spinner />;
+  if (loading) return <TableSkeleton rows={6} cols={4} />;
 
   const filtered = contacts.filter((c) => {
     const q = query.trim().toLowerCase();

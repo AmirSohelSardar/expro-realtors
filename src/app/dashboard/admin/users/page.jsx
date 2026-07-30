@@ -6,6 +6,7 @@ import Spinner from "@/components/Spinner";
 import Pagination from "@/components/Pagination";
 import { useToast } from "@/context/ToastContext";
 import { Trash2, Ban, CheckCircle, Search } from "lucide-react";
+import TableSkeleton from "@/components/skeletons/TableSkeleton";
 
 const PAGE_SIZE = 10;
 
@@ -61,7 +62,7 @@ export default function AdminUsersPage() {
     }
   }
 
-  if (loading) return <Spinner />;
+  if (loading) return <TableSkeleton rows={6} cols={4} />;
 
   const filtered = users.filter((u) => {
     const q = query.trim().toLowerCase();

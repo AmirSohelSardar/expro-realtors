@@ -8,6 +8,7 @@ import EmptyState from "@/components/EmptyState";
 import Button from "@/components/Button";
 import Pagination from "@/components/Pagination";
 import { Search, SlidersHorizontal, X, Home } from "lucide-react";
+import PropertyGridSkeleton from "@/components/skeletons/PropertyGridSkeleton";
 
 const PROPERTY_TYPES = ["flat", "apartment", "villa", "house", "studio", "penthouse", "office", "townhouse", "plot", "commercial"];
 const BHK_OPTIONS = ["1", "2", "3", "4", "5+"];
@@ -137,9 +138,7 @@ export default function PropertiesPage() {
       </div>
 
       {loading ? (
-        <div className="mt-10">
-          <Spinner />
-        </div>
+        <PropertyGridSkeleton count={9} className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3" />
       ) : properties.length === 0 ? (
         <div className="mt-10">
           <EmptyState icon={Home} title="No properties found" description="Try adjusting your filters." />

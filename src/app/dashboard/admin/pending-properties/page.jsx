@@ -10,6 +10,7 @@ import Button from "@/components/Button";
 import { useToast } from "@/context/ToastContext";
 import { formatPrice, propertyUrl } from "@/lib/utils";
 import { ClipboardCheck, Check, X } from "lucide-react";
+import ListSkeleton from "@/components/skeletons/ListSkeleton";
 
 export default function PendingPropertiesPage() {
   const { showToast } = useToast();
@@ -57,7 +58,7 @@ export default function PendingPropertiesPage() {
     }
   }
 
-  if (loading) return <Spinner />;
+  if (loading) return <ListSkeleton rows={3} withThumbnail />;
 
   return (
     <div>

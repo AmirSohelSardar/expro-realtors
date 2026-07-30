@@ -8,6 +8,7 @@ import EmptyState from "@/components/EmptyState";
 import { useToast } from "@/context/ToastContext";
 import { propertyUrl } from "@/lib/utils";
 import { CalendarCheck, Phone } from "lucide-react";
+import ListSkeleton from "@/components/skeletons/ListSkeleton";
 
 const STATUS_STYLES = {
   pending: "bg-brass-500/10 text-brass-600",
@@ -43,7 +44,7 @@ export default function AdminSiteVisitsPage() {
     }
   }
 
-  if (loading) return <Spinner />;
+  if (loading) return <ListSkeleton rows={3} withThumbnail />;
 
   return (
     <div>

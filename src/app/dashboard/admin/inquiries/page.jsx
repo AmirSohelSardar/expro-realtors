@@ -8,6 +8,7 @@ import EmptyState from "@/components/EmptyState";
 import Pagination from "@/components/Pagination";
 import { MessageSquare } from "lucide-react";
 import { propertyUrl } from "@/lib/utils";
+import TableSkeleton from "@/components/skeletons/TableSkeleton";
 
 const PAGE_SIZE = 10;
 
@@ -23,7 +24,7 @@ export default function AdminInquiriesPage() {
       .finally(() => setLoading(false));
   }, []);
 
-  if (loading) return <Spinner />;
+  if (loading) return <TableSkeleton rows={6} cols={4} />;
 
   const totalPages = Math.max(1, Math.ceil(inquiries.length / PAGE_SIZE));
   const paginated = inquiries.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE);

@@ -9,6 +9,7 @@ import EmptyState from "@/components/EmptyState";
 import { useToast } from "@/context/ToastContext";
 import { formatPrice } from "@/lib/utils";
 import { Home, Pencil, Trash2, Plus, Clock } from "lucide-react";
+import ListSkeleton from "@/components/skeletons/ListSkeleton";
 
 export default function MyPropertiesPage() {
   const { showToast } = useToast();
@@ -57,7 +58,7 @@ export default function MyPropertiesPage() {
     }
   }
 
-  if (loading) return <Spinner />;
+  if (loading) return <ListSkeleton rows={4} withThumbnail />;
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">

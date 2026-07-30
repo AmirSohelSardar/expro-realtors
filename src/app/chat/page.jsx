@@ -11,6 +11,7 @@ import { useAuth } from "@/context/AuthContext";
 import { MessageCircle } from "lucide-react";
 import { roleLabel, formatChatTime } from "@/lib/utils";
 import { Suspense } from "react";
+import ChatListSkeleton from "@/components/skeletons/ChatListSkeleton";
 
 function ChatListInner() {
   const { user } = useAuth();
@@ -60,7 +61,7 @@ useEffect(() => {
       });
   }, [searchParams, router, starting, user]);
 
-  if (loading || starting) return <Spinner />;
+  if (loading || starting) return <ChatListSkeleton />;
 
   return (
     <div className="mx-auto max-w-3xl px-4 py-10 sm:px-6 lg:px-8">

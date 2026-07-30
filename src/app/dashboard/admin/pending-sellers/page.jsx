@@ -7,6 +7,7 @@ import EmptyState from "@/components/EmptyState";
 import Button from "@/components/Button";
 import { useToast } from "@/context/ToastContext";
 import { UserCheck } from "lucide-react";
+import ListSkeleton from "@/components/skeletons/ListSkeleton";
 
 export default function PendingSellersPage() {
   const { showToast } = useToast();
@@ -40,7 +41,7 @@ export default function PendingSellersPage() {
     }
   }
 
-  if (loading) return <Spinner />;
+  if (loading) return <ListSkeleton rows={3} withThumbnail />;
 
   return (
     <div>

@@ -6,6 +6,7 @@ import { useAuth } from "@/context/AuthContext";
 import Button from "@/components/Button";
 import Spinner from "@/components/Spinner";
 import { User as UserIcon, X } from "lucide-react";
+import ProfileSkeleton from "@/components/skeletons/ProfileSkeleton";
 
 export default function ProfilePage() {
   const { user, loading, refreshMe } = useAuth();
@@ -28,7 +29,7 @@ export default function ProfilePage() {
     setPreview(user.profilePic || null);
   }, [user]);
 
-  if (loading) return <Spinner />;
+  if (loading) return <ProfileSkeleton />;
 
   if (!user) {
     return <p className="px-6 py-16 text-center text-ink-800/60">Please sign in to view your profile.</p>;

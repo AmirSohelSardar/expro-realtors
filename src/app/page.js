@@ -9,6 +9,7 @@ import Spinner from "@/components/Spinner";
 import EmptyState from "@/components/EmptyState";
 import { Home } from "lucide-react";
 import RevealOnScroll from "@/components/RevealOnScroll";
+import PropertyGridSkeleton from "@/components/skeletons/PropertyGridSkeleton";
 
 const HOME_PAGE_SIZE = 6;
 
@@ -72,7 +73,7 @@ export default function HomePage() {
       <section className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
         <h2 className="font-display text-2xl text-ink-950">Latest listings</h2>
         {loading ? (
-          <Spinner />
+          <PropertyGridSkeleton count={6} className="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3" />
         ) : loadError ? (
           <div className="mt-8 flex flex-col items-center gap-3 rounded-sm border border-dashed border-ink-800/20 px-6 py-16 text-center">
             <p className="text-sm text-ink-800/70">
