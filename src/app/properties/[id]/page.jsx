@@ -324,6 +324,36 @@ export default function PropertyDetailsPage() {
             </div>
           )}
 
+          {property.ceoCommentary && (
+            <div className="mt-10 rounded-sm bg-paper-100/60 p-5 sm:p-6">
+              <h2 className="font-display text-xl text-ink-950">Expert Perspective</h2>
+
+              <div className="mt-4 flex flex-col gap-4 sm:flex-row sm:items-start">
+                <div className="relative mx-auto h-20 w-20 shrink-0 overflow-hidden rounded-full border-2 border-brass-500 shadow-sm sm:mx-0">
+                  <Image
+                    src="/ceo.jpg"
+                    alt="Habibur Rahaman — CEO, Expro Group"
+                    fill
+                    sizes="80px"
+                    className="object-cover"
+                  />
+                </div>
+
+                <div className="flex-1 text-center sm:text-left">
+                  <p className="font-display text-base text-ink-950">Habibur Rahaman</p>
+                  <p className="font-mono text-xs uppercase tracking-widest text-brass-600">CEO, Expro Group</p>
+
+                  <div className="relative mt-3 rounded-sm bg-paper-50 p-4 shadow-sm">
+                    <span className="absolute left-2 top-0 font-display text-4xl leading-none text-brass-500/30">&ldquo;</span>
+                    <p className="whitespace-pre-line text-sm italic leading-relaxed text-ink-800/80">
+                      {property.ceoCommentary}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+
           {(property.strengths || property.considerations) && (
             <div className="mt-6">
               <p className="font-mono text-[10px] uppercase tracking-widest text-rust-500">Honest Insights</p>

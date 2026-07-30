@@ -45,6 +45,7 @@ export default function PropertyForm({ initialData, propertyId }) {
   const [whyConsider, setWhyConsider] = useState(initialData?.whyConsider || "");
   const [strengths, setStrengths] = useState(initialData?.strengths || "");
   const [considerations, setConsiderations] = useState(initialData?.considerations || "");
+  const [ceoCommentary, setCeoCommentary] = useState(initialData?.ceoCommentary || "");
   const [locationImageFile, setLocationImageFile] = useState(null);
   const [locationImagePreview, setLocationImagePreview] = useState(initialData?.locationImage || null);
   const [removeLocationImage, setRemoveLocationImage] = useState(false);
@@ -103,6 +104,7 @@ export default function PropertyForm({ initialData, propertyId }) {
     fd.append("whyConsider", whyConsider);
     fd.append("strengths", strengths);
     fd.append("considerations", considerations);
+    fd.append("ceoCommentary", ceoCommentary);
 
     try {
       if (isEdit) {
@@ -498,6 +500,22 @@ export default function PropertyForm({ initialData, propertyId }) {
             />
           </div>
         </div>
+      </div>
+
+      <div className="rounded-sm border border-ink-800/10 p-4">
+        <p className="font-mono text-xs uppercase tracking-widest text-ink-800/70">
+          CEO commentary <span className="normal-case text-ink-800/40">(optional)</span>
+        </p>
+        <p className="mt-1 text-xs text-ink-800/50">
+          Shown as an &quot;Expert Perspective&quot; section with the CEO&apos;s photo and name. Leave blank to hide it.
+        </p>
+        <textarea
+          rows={3}
+          value={ceoCommentary}
+          onChange={(e) => setCeoCommentary(e.target.value)}
+          placeholder="e.g. Vinayak 21 Acres offers a compelling combination of location, scale, and lifestyle..."
+          className="mt-3 w-full rounded-sm border border-ink-800/20 px-3 py-2.5 text-sm focus:border-brass-500 focus:outline-none"
+        />
       </div>
 
       <div className="rounded-sm border border-ink-800/10 p-4">
