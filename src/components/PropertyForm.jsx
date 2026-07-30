@@ -46,6 +46,9 @@ export default function PropertyForm({ initialData, propertyId }) {
   const [strengths, setStrengths] = useState(initialData?.strengths || "");
   const [considerations, setConsiderations] = useState(initialData?.considerations || "");
   const [ceoCommentary, setCeoCommentary] = useState(initialData?.ceoCommentary || "");
+  const [faqs, setFaqs] = useState(
+    initialData?.faqs?.length > 0 ? initialData.faqs : [{ question: "", answer: "" }]
+  );
   const [locationImageFile, setLocationImageFile] = useState(null);
   const [locationImagePreview, setLocationImagePreview] = useState(initialData?.locationImage || null);
   const [removeLocationImage, setRemoveLocationImage] = useState(false);
@@ -69,6 +72,18 @@ export default function PropertyForm({ initialData, propertyId }) {
 
   function removeNewFile(idx) {
     setNewFiles((prev) => prev.filter((_, i) => i !== idx));
+  }
+
+  function updateFaq(idx, field, value) {
+    setFaqs((prev) => prev.map((f, i) => (i === idx ? { ...f, [field]: value } : f)));
+  }
+
+  function addFaq() {
+    setFaqs((prev) => [...prev, { question: "", answer: "" }]);
+  }
+
+  function removeFaq(idx) {
+    setFaqs((prev) => prev.filter((_, i) => i !== idx));
   }
 
   function handleLocationImageChange(e) {
@@ -105,6 +120,7 @@ export default function PropertyForm({ initialData, propertyId }) {
     fd.append("strengths", strengths);
     fd.append("considerations", considerations);
     fd.append("ceoCommentary", ceoCommentary);
+    fd.append("faqs", JSON.stringify(faqs.filter((f) => f.question.trim() && f.answer.trim())));
 
     try {
       if (isEdit) {
@@ -516,6 +532,57 @@ export default function PropertyForm({ initialData, propertyId }) {
           placeholder="e.g. Vinayak 21 Acres offers a compelling combination of location, scale, and lifestyle..."
           className="mt-3 w-full rounded-sm border border-ink-800/20 px-3 py-2.5 text-sm focus:border-brass-500 focus:outline-none"
         />
+      </div>
+
+      <div className="rounded-sm border border-ink-800/10 p-4">
+        <p className="font-mono text-xs uppercase tracking-widest text-ink-800/70">
+          FAQs <span className="normal-case text-ink-800/40">(optional)</span>
+        </p>
+        <p className="mt-1 text-xs text-ink-800/50">
+          Add common questions buyers ask about this property. Leave empty to skip this section.
+        </p>
+
+        <div className="mt-3 flex flex-col gap-3">
+          {faqs.map((faq, idx) => (
+            <div key={idx} className="rounded-sm border border-ink-800/10 p-3">
+              <div className="flex items-center justify-between">
+                <span className="font-mono text-[10px] uppercase tracking-widest text-ink-800/40">
+                  FAQ {idx + 1}
+                </span>
+                {faqs.length > 1 && (
+                  <button
+                    type="button"
+                    onClick={() => removeFaq(idx)}
+                    className="text-xs text-rust-500 hover:underline"
+                  >
+                    Remove
+                  </button>
+                )}
+              </div>
+              <input
+                value={faq.question}
+                onChange={(e) => updateFaq(idx, "question", e.target.value)}
+                placeholder="Question — e.g. What is the current price?"
+                className="mt-2 w-full rounded-sm border border-ink-800/20 px-3 py-2 text-sm focus:border-brass-500 focus:outline-none"
+              />
+              <textarea
+                rows={2}
+                value={faq.answer}
+                onChange={(e) => updateFaq(idx, "answer", e.target.value)}
+                placeholder="Answer"
+                className="mt-2 w-full rounded-sm border border-ink-800/20 px-3 py-2 text-sm focus:border-brass-500 focus:outline-none"
+              />
+            </div>
+          ))}
+        </div>
+
+        <button
+          type="button"
+          onClick={addFaq}
+          className="mt-3 rounded-sm border border-ink-800/20 px-3 py-2 text-xs font-mono uppercase tracking-widest hover:border-brass-500"
+        >
+          + Add FAQ
+        </button>
       </div>
 
       <div className="rounded-sm border border-ink-800/10 p-4">

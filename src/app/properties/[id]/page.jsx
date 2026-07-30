@@ -12,6 +12,7 @@ import ImageLightbox from "@/components/ImageLightbox";
 import SiteVisitForm from "@/components/SiteVisitForm";
 import PropertyVideo from "@/components/PropertyVideo";
 import EMICalculator from "@/components/EMICalculator";
+import PropertyFAQ from "@/components/PropertyFAQ";
 import { useAuth } from "@/context/AuthContext";
 import { useToast } from "@/context/ToastContext";
 import { formatPrice, POSSESSION_STATUS_META } from "@/lib/utils";
@@ -381,6 +382,8 @@ export default function PropertyDetailsPage() {
           )}
 
           <EMICalculator price={property.price} />
+
+          <PropertyFAQ faqs={property.faqs} />
 
           {property.amenities?.length > 0 && (
             <div className="mt-8">
