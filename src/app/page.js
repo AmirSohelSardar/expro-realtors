@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import api from "@/lib/api";
 import { useAuth } from "@/context/AuthContext";
@@ -17,12 +17,23 @@ export default function HomePage() {
   const { user } = useAuth();
   const [properties, setProperties] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [loadError, setLoadError] = useState(false);
   const [counts, setCounts] = useState({});
 
-  useEffect(() => {
-    api.get("/property").then(({ data }) => setProperties(data.properties || [])).finally(() => setLoading(false));
+  const fetchHome = useCallback(() => {
+    setLoading(true);
+    setLoadError(false);
+    api
+      .get("/property")
+      .then(({ data }) => setProperties(data.properties || []))
+      .catch(() => setLoadError(true))
+      .finally(() => setLoading(false));
     api.get("/property/counts").then(({ data }) => setCounts(data.counts || {})).catch(() => {});
   }, []);
+
+  useEffect(() => {
+    fetchHome();
+  }, [fetchHome]);
 
   function handleViewMore() {
     if (!user) {
@@ -62,6 +73,19 @@ export default function HomePage() {
         <h2 className="font-display text-2xl text-ink-950">Latest listings</h2>
         {loading ? (
           <Spinner />
+        ) : loadError ? (
+          <div className="mt-8 flex flex-col items-center gap-3 rounded-sm border border-dashed border-ink-800/20 px-6 py-16 text-center">
+            <p className="text-sm text-ink-800/70">
+              Couldn&apos;t load listings right now — this can happen briefly on the very first
+              request after the server has been idle. Please try again.
+            </p>
+            <button
+              onClick={fetchHome}
+              className="rounded-sm bg-brass-500 px-5 py-2.5 font-mono text-xs uppercase tracking-widest text-ink-950 hover:bg-brass-400"
+            >
+              Retry
+            </button>
+          </div>
         ) : properties.length === 0 ? (
           <div className="mt-8">
             <EmptyState icon={Home} title="No properties yet" description="New listings will show up here." />
