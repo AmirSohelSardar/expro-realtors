@@ -41,6 +41,10 @@ export default function PropertyForm({ initialData, propertyId }) {
   const [existingImages, setExistingImages] = useState(initialData?.images || []);
   const [newFiles, setNewFiles] = useState([]);
   const [locationDetails, setLocationDetails] = useState(initialData?.locationDetails || "");
+  const [investmentAnalysis, setInvestmentAnalysis] = useState(initialData?.investmentAnalysis || "");
+  const [whyConsider, setWhyConsider] = useState(initialData?.whyConsider || "");
+  const [strengths, setStrengths] = useState(initialData?.strengths || "");
+  const [considerations, setConsiderations] = useState(initialData?.considerations || "");
   const [locationImageFile, setLocationImageFile] = useState(null);
   const [locationImagePreview, setLocationImagePreview] = useState(initialData?.locationImage || null);
   const [removeLocationImage, setRemoveLocationImage] = useState(false);
@@ -95,6 +99,10 @@ export default function PropertyForm({ initialData, propertyId }) {
     fd.append("locationDetails", locationDetails);
     if (locationImageFile) fd.append("locationImage", locationImageFile);
     if (removeLocationImage) fd.append("removeLocationImage", "true");
+    fd.append("investmentAnalysis", investmentAnalysis);
+    fd.append("whyConsider", whyConsider);
+    fd.append("strengths", strengths);
+    fd.append("considerations", considerations);
 
     try {
       if (isEdit) {
@@ -436,6 +444,60 @@ export default function PropertyForm({ initialData, propertyId }) {
           className="mt-3 w-full text-sm file:mr-3 file:rounded-sm file:border-0 file:bg-ink-900 file:px-3 file:py-2 file:text-xs file:uppercase file:tracking-widest file:text-paper-50"
         />
         <p className="mt-1 text-xs text-ink-800/50">Up to 10 images total.</p>
+      </div>
+
+      <div className="rounded-sm border border-ink-800/10 p-4">
+        <p className="font-mono text-xs uppercase tracking-widest text-ink-800/70">
+          Investment insights <span className="normal-case text-ink-800/40">(optional)</span>
+        </p>
+        <p className="mt-1 text-xs text-ink-800/50">
+          Shown as extra sections on the property page. Leave any box blank to hide that section.
+        </p>
+
+        <div className="mt-3">
+          <label className="font-mono text-xs uppercase tracking-widest text-ink-800/70">Expro Investment Analysis</label>
+          <textarea
+            rows={4}
+            value={investmentAnalysis}
+            onChange={(e) => setInvestmentAnalysis(e.target.value)}
+            placeholder={"Location & Connectivity - 9.8/10\nDeveloper Credibility - 9.7/10\nOpen Space & Amenities - 9.9/10"}
+            className="mt-1.5 w-full rounded-sm border border-ink-800/20 px-3 py-2.5 text-sm focus:border-brass-500 focus:outline-none"
+          />
+        </div>
+
+        <div className="mt-4">
+          <label className="font-mono text-xs uppercase tracking-widest text-ink-800/70">Why Consider This Project?</label>
+          <textarea
+            rows={4}
+            value={whyConsider}
+            onChange={(e) => setWhyConsider(e.target.value)}
+            placeholder={"Prime location with excellent connectivity...\nDeveloped by a trusted builder..."}
+            className="mt-1.5 w-full rounded-sm border border-ink-800/20 px-3 py-2.5 text-sm focus:border-brass-500 focus:outline-none"
+          />
+        </div>
+
+        <div className="mt-4 grid gap-4 sm:grid-cols-2">
+          <div>
+            <label className="font-mono text-xs uppercase tracking-widest text-ink-800/70">Strengths</label>
+            <textarea
+              rows={4}
+              value={strengths}
+              onChange={(e) => setStrengths(e.target.value)}
+              placeholder={"21-Acre Integrated Township\n75% Open Green Areas"}
+              className="mt-1.5 w-full rounded-sm border border-ink-800/20 px-3 py-2.5 text-sm focus:border-brass-500 focus:outline-none"
+            />
+          </div>
+          <div>
+            <label className="font-mono text-xs uppercase tracking-widest text-ink-800/70">Things to Consider</label>
+            <textarea
+              rows={4}
+              value={considerations}
+              onChange={(e) => setConsiderations(e.target.value)}
+              placeholder={"Ongoing development nearby\nPeak hour traffic"}
+              className="mt-1.5 w-full rounded-sm border border-ink-800/20 px-3 py-2.5 text-sm focus:border-brass-500 focus:outline-none"
+            />
+          </div>
+        </div>
       </div>
 
       <div className="rounded-sm border border-ink-800/10 p-4">

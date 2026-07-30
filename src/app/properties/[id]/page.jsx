@@ -297,6 +297,58 @@ export default function PropertyDetailsPage() {
 
           {property.youtubeUrl && <PropertyVideo youtubeUrl={property.youtubeUrl} />}
 
+          {(property.investmentAnalysis || property.whyConsider) && (
+            <div className="mt-10 grid gap-4 sm:grid-cols-2">
+              {property.investmentAnalysis && (
+                <div className="rounded-sm border border-ink-800/10 p-5">
+                  <p className="font-mono text-[10px] uppercase tracking-widest text-rust-500">
+                    Expert Analysis. Smarter Investments.
+                  </p>
+                  <h2 className="mt-1 font-display text-lg text-ink-950">Expro Investment Analysis</h2>
+                  <p className="mt-3 whitespace-pre-line text-sm leading-relaxed text-ink-800/80">
+                    {property.investmentAnalysis}
+                  </p>
+                </div>
+              )}
+              {property.whyConsider && (
+                <div className="rounded-sm border border-ink-800/10 p-5">
+                  <p className="font-mono text-[10px] uppercase tracking-widest text-rust-500">
+                    What Makes This Project a Smart Choice.
+                  </p>
+                  <h2 className="mt-1 font-display text-lg text-ink-950">Why Consider This Project?</h2>
+                  <p className="mt-3 whitespace-pre-line text-sm leading-relaxed text-ink-800/80">
+                    {property.whyConsider}
+                  </p>
+                </div>
+              )}
+            </div>
+          )}
+
+          {(property.strengths || property.considerations) && (
+            <div className="mt-6">
+              <p className="font-mono text-[10px] uppercase tracking-widest text-rust-500">Honest Insights</p>
+              <h2 className="mt-1 font-display text-xl text-ink-950">Pros &amp; Considerations</h2>
+              <div className="mt-3 grid gap-4 sm:grid-cols-2">
+                {property.strengths && (
+                  <div className="rounded-sm bg-sage-500/5 p-5">
+                    <p className="font-mono text-xs font-semibold uppercase tracking-widest text-sage-600">Strengths</p>
+                    <p className="mt-3 whitespace-pre-line text-sm leading-relaxed text-ink-800/80">
+                      {property.strengths}
+                    </p>
+                  </div>
+                )}
+                {property.considerations && (
+                  <div className="rounded-sm bg-brass-500/5 p-5">
+                    <p className="font-mono text-xs font-semibold uppercase tracking-widest text-brass-600">Things to Consider</p>
+                    <p className="mt-3 whitespace-pre-line text-sm leading-relaxed text-ink-800/80">
+                      {property.considerations}
+                    </p>
+                  </div>
+                )}
+              </div>
+            </div>
+          )}
+
           {property.amenities?.length > 0 && (
             <div className="mt-8">
               <h2 className="font-display text-xl text-ink-950">Amenities</h2>
