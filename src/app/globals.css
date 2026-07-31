@@ -71,3 +71,19 @@ select:focus-visible {
 .animate-float {
   animation: float 4s ease-in-out infinite;
 }
+
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  #compare-print-area,
+  #compare-print-area * {
+    visibility: visible;
+  }
+  #compare-print-area {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+  }
+}
