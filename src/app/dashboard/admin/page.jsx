@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import api from "@/lib/api";
-import Spinner from "@/components/Spinner";
+import Skeleton from "@/components/Skeleton";
 import { Users, Home, Eye, CheckCircle } from "lucide-react";
 
 export default function AdminOverviewPage() {
@@ -15,8 +15,6 @@ export default function AdminOverviewPage() {
       .then(({ data }) => setStats(data.stats))
       .finally(() => setLoading(false));
   }, []);
-
-  if (loading) return <Spinner />;
 
   const cards = [
     { label: "Total Users", value: stats?.totalUsers ?? 0, icon: Users },
@@ -31,13 +29,21 @@ export default function AdminOverviewPage() {
       <p className="mt-1 text-sm text-ink-800/60">Platform stats at a glance.</p>
 
       <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        {cards.map((c) => (
-          <div key={c.label} className="rounded-sm border border-ink-800/10 p-5">
-            <c.icon size={20} className="text-brass-500" />
-            <p className="mt-3 font-mono text-2xl tabular-nums text-ink-950">{c.value}</p>
-            <p className="mt-1 text-xs text-ink-800/60">{c.label}</p>
-          </div>
-        ))}
+        {loading
+          ? Array.from({ length: 4 }).map((_, i) => (
+              <div key={i} className="rounded-sm border border-ink-800/10 p-5">
+                <Skeleton className="h-5 w-5" />
+                <Skeleton className="mt-3 h-7 w-16" />
+                <Skeleton className="mt-2 h-3 w-24" />
+              </div>
+            ))
+          : cards.map((c) => (
+              <div key={c.label} className="rounded-sm border border-ink-800/10 p-5">
+                <c.icon size={20} className="text-brass-500" />
+                <p className="mt-3 font-mono text-2xl tabular-nums text-ink-950">{c.value}</p>
+                <p className="mt-1 text-xs text-ink-800/60">{c.label}</p>
+              </div>
+            ))}
       </div>
     </div>
   );
