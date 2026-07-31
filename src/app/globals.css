@@ -86,15 +86,4 @@ select:focus-visible {
     top: 0;
     width: 100%;
   }
-  html, body {
-    height: auto !important;
-    overflow: visible !important;
-  }
-  body > * {
-    display: none !important;
-  }
-  body:has(#compare-print-area) #compare-print-area,
-  body #compare-print-area {
-    display: block !important;
-  }
 }
